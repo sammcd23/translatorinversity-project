@@ -12,16 +12,6 @@
             text-align: center;
             margin-top: 40px;
         }
-    </style>
-</head>
-<body>  
-    <h1 class="title">GOV.UK Universal Translations</h1>
-    <div class="box">
-       <form id ="searchForm" action="search_results.html" method="get">
-            <input required type="text" name="search" id="search" placeholder="Search for translations">
-        </form>
-    </div>
-    <style>
         .box {
             display: flex;
             justify-content: center;
@@ -34,7 +24,30 @@
             }
            
         }
-        </style>
+        .corner {
+            position: absolute;
+             display: flex;
+            top: 55px;
+            right: 30px;
+             
+            
+            
+         }
+    </style>
+</head>
+<body>  
+    <h1 class="title">GOV.UK Universal Translations</h1>
+    <div class="box">
+       <form id ="searchForm" action="search_results.html" method="get">
+            <input required type="text" name="search" id="search" placeholder="Search for translations...">
+        </form>
+    </div>
+    <div class="corner">
+        <form id ="translationForm" action="translationinput.html" method="get">
+             <button type="=submit">"Input your translations here!"</button>
+         </form>
+     </div>
+    
 </body>
 
 </html>
