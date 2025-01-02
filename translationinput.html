@@ -17,6 +17,9 @@
         <label for="userName">Your Name:</label>
         <input type="text" id="userName" name="userName"><br><br>
         
+        <label for="translation">Translation:</label><br>
+        <textarea id="translation" name="translation" rows="10" cols="50" required></textarea><br><br>
+        
         <button type="submit">Submit</button>
     </form>
 
@@ -27,11 +30,13 @@
             const language = document.getElementById('language').value;
             const pageName = document.getElementById('pageName').value;
             const userName = document.getElementById('userName').value;
+            const translation = document.getElementById('translation').value;
             
             const translationData = {
                 language: language,
                 pageName: pageName,
-                userName: userName
+                userName: userName,
+                translation: translation
             };
             
             // Store the data in localStorage
@@ -43,8 +48,20 @@
             document.getElementById('language').value = '';
             document.getElementById('pageName').value = '';
             document.getElementById('userName').value = '';
+            document.getElementById('translation').value = '';
         });
 
+        // Load the data from localStorage if it exists
+        window.addEventListener('load', function() {
+            const storedData = localStorage.getItem('translationData');
+            if (storedData) {
+                const translationData = JSON.parse(storedData);
+                document.getElementById('language').value = translationData.language;
+                document.getElementById('pageName').value = translationData.pageName;
+                document.getElementById('userName').value = translationData.userName;
+                document.getElementById('translation').value = translationData.translation;
+            }
+        });
     </script>
 </body>
 </html>
