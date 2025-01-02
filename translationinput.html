@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Inputs</title>
+</head>
+<body>
+    <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
+    <form id="translationForm">
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" required><br><br>
+        
+        <label for="pageName">Page Name:</label>
+        <input type="text" id="pageName" name="pageName" required><br><br>
+        
+        <label for="userName">Your Name:</label>
+        <input type="text" id="userName" name="userName"><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('translationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const language = document.getElementById('language').value;
+            const pageName = document.getElementById('pageName').value;
+            const userName = document.getElementById('userName').value;
+            
+            const translationData = {
+                language: language,
+                pageName: pageName,
+                userName: userName
+            };
+            
+            // Store the data in localStorage
+            localStorage.setItem('translationData', JSON.stringify(translationData));
+            
+            console.log('Translation Data:', translationData);
+            
+            // Clear the form fields
+            document.getElementById('language').value = '';
+            document.getElementById('pageName').value = '';
+            document.getElementById('userName').value = '';
+        });
+
+    </script>
+</body>
+</html>
