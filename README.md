@@ -8,3 +8,6 @@ The idea for this project is to create a prototype for a website with the idea t
 
 Home page 1#-
 First I thought it was worth adding a title for the site, "GOV.UK Universal Translations" and a search box for when inevitably I add pages to actually be searched for. I used some simple html along with some styling in css to make a centred title and search box.
+
+Home page 2#-
+A button to redirect to a page to input translations was added, after figuring out how to use css to align it to the top right of the screen.
