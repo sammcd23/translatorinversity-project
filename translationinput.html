@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Translation Inputs</title>
+    <style> /* CSS styling */
+        .corner {
+            position: absolute;
+            display: flex;
+            top: 55px;
+            right: 30px;
+        }
+        .corner button {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
-    <form id="translationForm">
+    <form id="translationForm"> <!-- Creates input areas for each variable to be input -->
         <label for="language">Language:</label>
         <input type="text" id="language" name="language" required><br><br>
         
@@ -22,16 +35,20 @@
         
         <button type="submit">Submit</button>
     </form>
-
+    <div class="corner"><!-- Button to return to the homepage -->
+        <form id="Homepage" action="index.html" method="get">
+            <button type="submit">Home</button>
+        </form>
+    </div>
     <script>
         document.getElementById('translationForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            
+            //Gets values from inputs to be stored and puts them in variables
             const language = document.getElementById('language').value;
             const pageName = document.getElementById('pageName').value;
             const userName = document.getElementById('userName').value;
             const translation = document.getElementById('translation').value;
-            
+            //Creates an object to store the data
             const translationData = {
                 language: language,
                 pageName: pageName,
@@ -39,29 +56,18 @@
                 translation: translation
             };
             
-            // Store the data in localStorage
+            // Store the data in localstorage
             localStorage.setItem('translationData', JSON.stringify(translationData));
             
             console.log('Translation Data:', translationData);
             
-            // Clear the form fields
+            // Clears the input fields
             document.getElementById('language').value = '';
             document.getElementById('pageName').value = '';
             document.getElementById('userName').value = '';
             document.getElementById('translation').value = '';
         });
 
-        // Load the data from localStorage if it exists
-        window.addEventListener('load', function() {
-            const storedData = localStorage.getItem('translationData');
-            if (storedData) {
-                const translationData = JSON.parse(storedData);
-                document.getElementById('language').value = translationData.language;
-                document.getElementById('pageName').value = translationData.pageName;
-                document.getElementById('userName').value = translationData.userName;
-                document.getElementById('translation').value = translationData.translation;
-            }
-        });
     </script>
 </body>
 </html>

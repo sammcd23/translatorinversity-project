@@ -4,8 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
+    <style>/* CSS styling */
+        .corner {
+            position: absolute;
+            display: flex;
+            top: 55px;
+            right: 30px;
+        }
+        .corner button {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <h1>Search Results</h1>
+    <div id="results"></div>
+
+    <script>// function to get the query parameter from the URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+// function to display the search results
+        function displayResults(query) {
+            const resultsDiv = document.getElementById('results');
+            const storedData = localStorage.getItem('translationData');
+            if (storedData) {
+                const translationData = JSON.parse(storedData);
+                const { language, pageName, userName, translation } = translationData;
+
+                // Check if the query matches the page name
+                if (pageName.includes(query)) {
+                    resultsDiv.innerHTML = `
+                        <p><strong>Language:</strong> ${language}</p>
+                        <p><strong>Page Name:</strong> ${pageName}</p>
+                        <p><strong>User Name:</strong> ${userName}</p>
+                        <p><strong>Translation:</strong> ${translation}</p>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = 'No results found.';// if no results are found
+                }
+            } else {
+                resultsDiv.innerHTML = 'No data available.';// if data is not available
+            }
+        }
+
+        const query = getQueryParameter('query');
+        if (query) {
+            displayResults(query);
+        } else {
+            document.getElementById('results').innerHTML = 'No search query provided.';
+        }
+    </script>
 </body>
 </html>
