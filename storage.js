@@ -1,4 +1,3 @@
-// filepath: /c:/Users/gmmcd/Desktop/project/public/storage.js
 const initialData = [
     {
         "language": "English",
@@ -10,13 +9,23 @@ const initialData = [
         "language": "Spanish",
         "pageName": "HomePage",
         "userName": "Jane Doe",
-        "translation": "¡Bienvenido a la página principal!"
+        "translation": "¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!¡Bienvenido a la página principal!"
+    },
+    {
+        "language": "English",
+        "pageName": "Example",
+        "userName": "Joe",
+        "translation": "Testing testing testing"
     }
 ];
 
+const storageVersion = '2.0'; // Increment this version when you change initialData
+
 function initializeStorage() {
-    if (!localStorage.getItem('pages')) {
+    const currentVersion = localStorage.getItem('storageVersion');
+    if (currentVersion !== storageVersion) {
         localStorage.setItem('pages', JSON.stringify(initialData));
+        localStorage.setItem('storageVersion', storageVersion);
     }
 }
 

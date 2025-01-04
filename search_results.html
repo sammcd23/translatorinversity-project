@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/gmmcd/Desktop/project/search_results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,19 @@
             height: 40px;
             font-size: 16px;
         }
+        .result-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+        }
+        .translation-details {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -27,6 +39,7 @@
     </div>
     <h1>Search Results</h1>
     <div id="results"></div>
+    <div id="translationDetails" class="translation-details"></div>
     <script src="storage.js"></script>
     <script>
         function getQueryParameter(name) {
@@ -36,23 +49,43 @@
 
         function displayResults(query) {
             const pages = getPages();
+            console.log('Pages from localStorage:', pages); // Debugging
             const resultsDiv = document.getElementById('results');
             const filteredPages = pages.filter(page => page.pageName.includes(query));
+            console.log('Filtered Pages:', filteredPages); // Debugging
             if (filteredPages.length > 0) {
-                filteredPages.forEach(page => {
-                    resultsDiv.innerHTML += `
-                        <p><strong>Language:</strong> ${page.language}</p>
-                        <p><strong>Page Name:</strong> ${page.pageName}</p>
-                        <p><strong>User Name:</strong> ${page.userName}</p>
-                        <p><strong>Translation:</strong> ${page.translation}</p>
+                filteredPages.forEach((page, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'result-button';
+                    button.innerHTML = `
+                        <strong>Language:</strong> ${page.language} | 
+                        <strong>Page Name:</strong> ${page.pageName} | 
+                        <strong>User Name:</strong> ${page.userName}
                     `;
+                    button.addEventListener('click', () => {
+                        displayTranslationDetails(page);
+                    });
+                    resultsDiv.appendChild(button);
                 });
             } else {
                 resultsDiv.innerHTML = 'No results found.';
             }
         }
 
+        function displayTranslationDetails(page) {
+            const translationDetailsDiv = document.getElementById('translationDetails');
+            translationDetailsDiv.innerHTML = `
+                <h2>Translation Details</h2>
+                <p><strong>Language:</strong> ${page.language}</p>
+                <p><strong>Page Name:</strong> ${page.pageName}</p>
+                <p><strong>User Name:</strong> ${page.userName}</p>
+                <p><strong>Translation:</strong> ${page.translation}</p>
+            `;
+            translationDetailsDiv.style.display = 'block';
+        }
+
         const query = getQueryParameter('query');
+        console.log('Search Query:', query); // Debugging
         if (query) {
             displayResults(query);
         } else {
