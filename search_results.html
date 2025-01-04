@@ -1,10 +1,11 @@
+<!-- filepath: /c:/Users/gmmcd/Desktop/project/search_results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <style>/* CSS styling */
+    <style>
         .corner {
             position: absolute;
             display: flex;
@@ -19,35 +20,35 @@
     </style>
 </head>
 <body>
+    <div class="corner">
+        <form id="Homepage" action="index.html" method="get">
+            <button type="submit">Home</button>
+        </form>
+    </div>
     <h1>Search Results</h1>
     <div id="results"></div>
-
-    <script>// function to get the query parameter from the URL
+    <script src="storage.js"></script>
+    <script>
         function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
-// function to display the search results
-        function displayResults(query) {
-            const resultsDiv = document.getElementById('results');
-            const storedData = localStorage.getItem('translationData');
-            if (storedData) {
-                const translationData = JSON.parse(storedData);
-                const { language, pageName, userName, translation } = translationData;
 
-                // Check if the query matches the page name
-                if (pageName.includes(query)) {
-                    resultsDiv.innerHTML = `
-                        <p><strong>Language:</strong> ${language}</p>
-                        <p><strong>Page Name:</strong> ${pageName}</p>
-                        <p><strong>User Name:</strong> ${userName}</p>
-                        <p><strong>Translation:</strong> ${translation}</p>
+        function displayResults(query) {
+            const pages = getPages();
+            const resultsDiv = document.getElementById('results');
+            const filteredPages = pages.filter(page => page.pageName.includes(query));
+            if (filteredPages.length > 0) {
+                filteredPages.forEach(page => {
+                    resultsDiv.innerHTML += `
+                        <p><strong>Language:</strong> ${page.language}</p>
+                        <p><strong>Page Name:</strong> ${page.pageName}</p>
+                        <p><strong>User Name:</strong> ${page.userName}</p>
+                        <p><strong>Translation:</strong> ${page.translation}</p>
                     `;
-                } else {
-                    resultsDiv.innerHTML = 'No results found.';// if no results are found
-                }
+                });
             } else {
-                resultsDiv.innerHTML = 'No data available.';// if data is not available
+                resultsDiv.innerHTML = 'No results found.';
             }
         }
 

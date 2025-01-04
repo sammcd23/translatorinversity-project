@@ -1,10 +1,11 @@
+<!-- filepath: /c:/Users/gmmcd/Desktop/project/translationinput.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Translation Inputs</title>
-    <style> /* CSS styling */
+    <style>
         .corner {
             position: absolute;
             display: flex;
@@ -20,7 +21,7 @@
 </head>
 <body>
     <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
-    <form id="translationForm"> <!-- Creates input areas for each variable to be input -->
+    <form id="translationForm">
         <label for="language">Language:</label>
         <input type="text" id="language" name="language" required><br><br>
         
@@ -35,39 +36,26 @@
         
         <button type="submit">Submit</button>
     </form>
-    <div class="corner"><!-- Button to return to the homepage -->
+    <div class="corner">
         <form id="Homepage" action="index.html" method="get">
             <button type="submit">Home</button>
         </form>
     </div>
+    <script src="storage.js"></script>
     <script>
         document.getElementById('translationForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            //Gets values from inputs to be stored and puts them in variables
-            const language = document.getElementById('language').value;
-            const pageName = document.getElementById('pageName').value;
-            const userName = document.getElementById('userName').value;
-            const translation = document.getElementById('translation').value;
-            //Creates an object to store the data
-            const translationData = {
-                language: language,
-                pageName: pageName,
-                userName: userName,
-                translation: translation
+            const formData = new FormData(event.target);
+            const data = {
+                language: formData.get('language'),
+                pageName: formData.get('pageName'),
+                userName: formData.get('userName'),
+                translation: formData.get('translation')
             };
-            
-            // Store the data in localstorage
-            localStorage.setItem('translationData', JSON.stringify(translationData));
-            
-            console.log('Translation Data:', translationData);
-            
-            // Clears the input fields
-            document.getElementById('language').value = '';
-            document.getElementById('pageName').value = '';
-            document.getElementById('userName').value = '';
-            document.getElementById('translation').value = '';
+            addPage(data);
+            alert('Translation submitted successfully!');
+            event.target.reset();
         });
-
     </script>
 </body>
 </html>

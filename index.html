@@ -1,10 +1,11 @@
+<!-- filepath: /c:/Users/gmmcd/Desktop/project/index.html -->
 <!DOCTYPE html>
-<html lang="en">  
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOV.UK Universal Translations</title>
-    <style> /* CSS styling */
+    <style>
         .title {
             font-size: 40px;
             font-weight: bold;
@@ -34,18 +35,26 @@
         }
     </style>
 </head>
-<body>  
+<body>
     <h1 class="title">GOV.UK Universal Translations</h1>
-    <div class="box"><!--search bar for queries-->
-       <form id="searchForm" action="search_results.html" method="get">
+    <div class="box">
+        <form id="searchForm">
             <input required type="text" name="query" id="search" placeholder="Search for translations...">
             <button type="submit">Search</button>
         </form>
     </div>
-    <div class="corner"><!--button to go to translation input page-->
+    <div class="corner">
         <form id="translationForm" action="translationinput.html" method="get">
-             <button type="submit">Input your translations here!</button>
-         </form>
-     </div>
+            <button type="submit">Input your translations here!</button>
+        </form>
+    </div>
+    <script src="storage.js"></script>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search').value;
+            window.location.href = `search_results.html?query=${query}`;
+        });
+    </script>
 </body>
 </html>
