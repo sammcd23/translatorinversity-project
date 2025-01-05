@@ -15,5 +15,6 @@ Simple home buttons are present on each page to search for other pages.
 Notice- You will need to input a translation with an author name, page name, language and translation before searching for results, as there are no placeholder translations to test.
 
 Known Issues- Make sure to try the pages on a few different browsers, as I have already found that the localstorage on firefox does not work with the search results page.
+            - If 2 pages of the same PageName are submitted, the second will not appear in search results
 
 Credits- GitHub Copilot, ChatGPT
