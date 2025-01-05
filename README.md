@@ -6,8 +6,14 @@ Project: GOV.UK Worldwide User Fed Translator
 
 The idea for this project is to create a prototype for a website with the idea that all people who need access to gov.uk can be granted it here due to other users who will input their own translations which can be read and rated by all other users of the site. This means a large amount of translations can be made for various languages, age groups, summaries and much more can be made.
 
-Home page 1#-
-First I thought it was worth adding a title for the site, "GOV.UK Universal Translations" and a search box for when inevitably I add pages to actually be searched for. I used some simple html along with some styling in css to make a centred title and search box.
+Installation: To run the project, simply download the files "index.html", "translationinput.html","search_results.html" and open index.html to open the home page.
 
-Home page 2#-
-A button to redirect to a page to input translations was added, after figuring out how to use css to align it to the top right of the screen.
+Features: The web pages currently allow for a few features-
+Opening translationinput.html from file or via homepage allows you to input a translation which is for now stored in local storage as this is a prototype.
+Search results page shows results containing the query input on the home page, this is searched for with the "Page Name" input on translationinput.html, so search for pages by Page Name after submitting one.
+Simple home buttons are present on each page to search for other pages.
+Notice- You will need to input a translation with an author name, page name, language and translation before searching for results, as there are no placeholder translations to test.
+
+Known Issues- Make sure to try the pages on a few different browsers, as I have already found that the localstorage on firefox does not work with the search results page.
+
+Credits- GitHub Copilot, ChatGPT
