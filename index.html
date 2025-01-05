@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/gmmcd/Desktop/project/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,20 +35,19 @@
     </style>
 </head>
 <body>
-    <h1 class="title">GOV.UK Universal Translations</h1>
+    <h1 class="title">GOV.UK Universal Translations</h1><!--Title-->
     <div class="box">
-        <form id="searchForm"><!--Input box to input query for translations-->
+        <form id="searchForm"><!--Search input box-->
             <input required type="text" name="query" id="search" placeholder="Search for translations...">
             <button type="submit">Search</button>
         </form>
     </div>
-    <div class="corner"> <!--Button to go to translation input page-->
+    <div class="corner"><!--Translation button redirecting to submission page-->
         <form id="translationForm" action="translationinput.html" method="get">
             <button type="submit">Input your translations here!</button>
         </form>
     </div>
-    <script src="storage.js"></script>
-    <script>//Passes value of search query to search_results.html
+    <script>//Sends search query to search_results.html
         document.getElementById('searchForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const query = document.getElementById('search').value;

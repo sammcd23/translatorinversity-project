@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/gmmcd/Desktop/project/translationinput.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +21,7 @@
 <body>
     <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
     <form id="translationForm">
+        <!--Inputs for language, pagename, author name and translation itself-->
         <label for="language">Language:</label>
         <input type="text" id="language" name="language" required><br><br>
         
@@ -36,13 +36,22 @@
         
         <button type="submit">Submit</button>
     </form>
-    <div class="corner">
+    <div class="corner"><!--Home button-->
         <form id="Homepage" action="index.html" method="get">
             <button type="submit">Home</button>
         </form>
     </div>
-    <script src="storage.js"></script>
-    <script>
+    <script>//Stores the translation data in localstorage
+        function getPages() {
+            return JSON.parse(localStorage.getItem('pages')) || [];
+        }
+        //Adds the page to the localstorage
+        function addPage(page) {
+            const pages = getPages();
+            pages.push(page);
+            localStorage.setItem('pages', JSON.stringify(pages));
+        }
+        //Submits the translation data
         document.getElementById('translationForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
@@ -53,7 +62,7 @@
                 translation: formData.get('translation')
             };
             addPage(data);
-            alert('Translation submitted successfully!');
+            alert('Translation submitted successfully!');//Confirmation
             event.target.reset();
         });
     </script>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <style>
+    <style>/*css styling*/
         .corner {
             position: absolute;
             display: flex;
@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <div class="corner">
+    <div class="corner"><!--Home page button redirects to index.html-->
         <form id="Homepage" action="index.html" method="get">
             <button type="submit">Home</button>
         </form>
@@ -40,13 +40,16 @@
     <h1>Search Results</h1>
     <div id="results"></div>
     <div id="translationDetails" class="translation-details"></div>
-    <script src="storage.js"></script>
-    <script>
+    <script>//Gets the pages stored in localstorage
+        function getPages() {
+            return JSON.parse(localStorage.getItem('pages')) || [];
+        }
+        //Gets the query parameter from the URL
         function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
-
+        //Displays the search results
         function displayResults(query) {
             const pages = getPages();
             console.log('Pages from localStorage:', pages); // Debugging
@@ -67,11 +70,11 @@
                     });
                     resultsDiv.appendChild(button);
                 });
-            } else {
+            } else {//If no results are found
                 resultsDiv.innerHTML = 'No results found.';
             }
         }
-
+        //Displays the translation details
         function displayTranslationDetails(page) {
             const translationDetailsDiv = document.getElementById('translationDetails');
             translationDetailsDiv.innerHTML = `
@@ -83,7 +86,7 @@
             `;
             translationDetailsDiv.style.display = 'block';
         }
-
+        //Gets the search query from the URL and displays the results
         const query = getQueryParameter('query');
         console.log('Search Query:', query); // Debugging
         if (query) {
