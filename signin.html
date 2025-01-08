@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <style>
-        /* Add your CSS styling here */
+        
     </style>
 </head>
 <body>
@@ -26,7 +26,7 @@
 
         function loginUser(username, password) {
             const logins = getLogins();
-            return logins.find(login => login.username === username && login.password === password);
+            return logins.find(login => login.Username === username && login.Password === password);
         }
 
         document.getElementById('signinForm').addEventListener('submit', function(event) {
