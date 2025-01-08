@@ -16,9 +16,20 @@
             height: 40px;
             font-size: 16px;
         }
+        .image{
+            
+            border-radius: 8px;
+            width: 1920px;
+            height: 800px;
+        
+        
+        
+                }
+            
     </style>
 </head>
 <body>
+    
     <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
     <form id="translationForm">
         <!--Inputs for language, pagename, author name and translation itself-->
@@ -41,6 +52,7 @@
             <button type="submit">Home</button>
         </form>
     </div>
+   
     <script>//Stores the translation data in localstorage
         function getPages() {
             return JSON.parse(localStorage.getItem('pages')) || [];
