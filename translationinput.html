@@ -33,14 +33,14 @@
     <h1>Input a Translation below, specify language, page name and your own name if you wish to take credit for your work.</h1>
     <form id="translationForm">
         <!--Inputs for language, pagename, author name and translation itself-->
+        <label for="userName">Your Name:</label>
+        <span id="loggedInUserName"></span><br><br>
+
         <label for="language">Language:</label>
         <input type="text" id="language" name="language" required><br><br>
         
         <label for="pageName">Page Name:</label>
         <input type="text" id="pageName" name="pageName" required><br><br>
-        
-        <label for="userName">Your Name:</label>
-        <input type="text" id="userName" name="userName"><br><br>
         
         <label for="translation">Translation:</label><br>
         <textarea id="translation" name="translation" rows="10" cols="50" required></textarea><br><br>
@@ -68,15 +68,17 @@
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = {
+                userName: localStorage.getItem('loggedInUser'), // Use logged-in user's name
                 language: formData.get('language'),
                 pageName: formData.get('pageName'),
-                userName: formData.get('userName'),
                 translation: formData.get('translation')
             };
             addPage(data);
             alert('Translation submitted successfully!');//Confirmation
             event.target.reset();
         });
+        // Display the logged-in user's name
+        document.getElementById('loggedInUserName').textContent = localStorage.getItem('loggedInUser');
     </script>
 </body>
 </html>
