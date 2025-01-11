@@ -30,30 +30,36 @@
         <button type="submit">Submit</button>
     </form>
     <script>
-        function getLogins() {
+        function getLogins() {//function to get logins from local storage
             return JSON.parse(localStorage.getItem('logins')) || [];
         }
-        function addLogin(login) {
+        function addLogin(login) {//adds login to local storage
             const logins = getLogins();
             logins.push(login);
             localStorage.setItem('logins', JSON.stringify(logins));
         }
+        function isUsernameTaken(username) {//checks if a username is already stored in localstorage
+            const logins = getLogins();
+            return logins.some(login => login.Username === username);
+        }//listener for form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault();//
             const formData = new FormData(event.target);
-            const data = {
+            const data = {//data object storing username and passwords
                 Username: formData.get('Username'),
                 Password: formData.get('Password'),
                 
             };
+            if (isUsernameTaken(data.Username)) {
+                alert('Username already taken. Please choose another one.');
+            } else {
             addLogin(data);
             alert('Login Saved.');//Confirmation
             event.target.reset();
-
-        })
-        ;
+            }
+        });
     </script>
-    <div class="corner">
+    <div class="corner"><!--Button to go to login page-->
         <form id="Sign up" action="signin.html" method="get">
             <button type="submit">Login</button>
         </form>

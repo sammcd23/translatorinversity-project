@@ -46,7 +46,7 @@
 <body>
      
     <h1 class="title">GOV.UK Universal Translations</h1><!--Title-->
-    
+   
     <div class="box">
      
         <form id="searchForm"><!--Search input box-->
@@ -64,11 +64,7 @@
         </form>
     </div>
     <script>
-        // Check if the user is logged in
-        if (!localStorage.getItem('loggedInUser')) {
-            // Redirect to the sign-in page if not logged in
-            window.location.href = 'signin.html';
-        }
+        
 
         // Sends search query to search_results.html
         document.getElementById('searchForm').addEventListener('submit', function(event) {

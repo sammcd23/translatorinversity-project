@@ -30,22 +30,22 @@
         <button type="submit">Submit</button>
     </form>
     <script>
-        function getLogins() {
+        function getLogins() {//gets logins from local storage
             return JSON.parse(localStorage.getItem('logins')) || [];
         }
 
-        function loginUser(username, password) {
+        function loginUser(username, password) {//function to login user
             const logins = getLogins();
             return logins.find(login => login.Username === username && login.Password === password);
         }
 
-        document.getElementById('signinForm').addEventListener('submit', function(event) {
+        document.getElementById('signinForm').addEventListener('submit', function(event) {//listener for form submission
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const user = loginUser(username, password);
 
-            if (user) {
+            if (user) {//if user inputs correct login details, they are logged in and localstorage is updated for current user
                 alert('Login successful!');
                 // Store the logged-in user in localStorage
                 localStorage.setItem('loggedInUser', username);

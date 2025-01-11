@@ -40,7 +40,9 @@
     <h1>Search Results</h1>
     <div id="results"></div>
     <div id="translationDetails" class="translation-details"></div>
-    <script>//Gets the pages stored in localstorage
+    <script>
+   
+    //Gets the pages stored in localstorage
         function getPages() {
             return JSON.parse(localStorage.getItem('pages')) || [];
         }
@@ -52,10 +54,10 @@
         //Displays the search results
         function displayResults(query) {
             const pages = getPages();
-            console.log('Pages from localStorage:', pages); // Debugging
+           
             const resultsDiv = document.getElementById('results');
-            const filteredPages = pages.filter(page => page.pageName.includes(query));
-            console.log('Filtered Pages:', filteredPages); // Debugging
+            const filteredPages = pages.filter(page => page.pageName.includes(query));//checks if query matches any page names
+       
             if (filteredPages.length > 0) {
                 filteredPages.forEach((page, index) => {
                     const button = document.createElement('button');
@@ -63,7 +65,8 @@
                     button.innerHTML = `
                         <strong>Language:</strong> ${page.language} | 
                         <strong>Page Name:</strong> ${page.pageName} | 
-                        <strong>User Name:</strong> ${page.userName}
+                        <strong>User Name:</strong> ${page.userName} | 
+                        
                     `;
                     button.addEventListener('click', () => {
                         displayTranslationDetails(page);
@@ -88,7 +91,7 @@
         }
         //Gets the search query from the URL and displays the results
         const query = getQueryParameter('query');
-        console.log('Search Query:', query); // Debugging
+        console.log('Search Query:', query); 
         if (query) {
             displayResults(query);
         } else {
